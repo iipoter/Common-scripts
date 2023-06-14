@@ -65,6 +65,6 @@ for person_id in ids:
         num += 1
         if num ==len(ids):
           push(content)
-    except:
+    except Exception as ex:
         content = person_id + '签到失败，可能是cookie失效,请及时更新cookie'
-        push(content)
+        push(content + ',出现如下异常：' + str(ex))
