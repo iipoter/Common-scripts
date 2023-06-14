@@ -1,4 +1,4 @@
-name: "Common airport Checkin"
+name: "Weibo超话 Checkin"
 
 on:
   schedule:
@@ -37,6 +37,7 @@ jobs:
         env:
           IDS: ${{ variables.IDS }}
           SCKEY: ${{ secrets.SCKEY }}
+          PLUS_TOKEN: ${{ secrets.PLUS_TOKEN }}
           BARK_TOKEN: ${{ secrets.BARK_TOKEN }}
           COOKIE: ${{ variables.COOKIE }}
         run: |
