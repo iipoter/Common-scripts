@@ -1,7 +1,7 @@
 import requests, json, re, os, time
 
 # 这里是你要签到的超话的id，每个超话的不一样，多个的话请用英文逗号隔开，例如‘[AA’,‘BB’].获取方式：进入到超话界面，地址栏中的地址的p/和/super_index之间的这一串
-ids = os.environ.get('IDS')
+ids = os.environ.get('IDS').split(',')
 # 这里是选择Server酱的推送方式，填写Sendkey，不想使用的话直接忽略
 SCKEY = os.environ.get('SCKEY')
 # 推送PLUS的token
@@ -10,6 +10,7 @@ Token = os.environ.get('PLUS_TOKEN')
 Bark_Token = os.environ.get('BARK_TOKEN')
 # 这里填写你的COOKIE
 cookie = os.environ.get('COOKIE')
+
 # 推送函数
 def push(content):
     if SCKEY != '':
