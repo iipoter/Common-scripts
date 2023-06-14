@@ -17,16 +17,16 @@ def push(content):
         url = "https://sctapi.ftqq.com/{}.send?title={}&desp={}".format(SCKEY, '微博超话签到', content)
         requests.post(url)
         print('推送完成')
-    elif Token != '':
+    if Token != '':
         headers = {'Content-Type': 'application/json'}
         json = {"token": Token, 'title': '微博超话签到', 'content': content, "template": "json"}
         resp = requests.post(f'http://www.pushplus.plus/send', json=json, headers=headers).json()
         print('push+推送成功' if resp['code'] == 200 else 'push+推送失败')
-    elif Bark_Token != '':
+    if Bark_Token != '':
         url = "https://api.day.app/{}/{}/{}".format(Bark_Token, '微博超话签到', content)
         requests.post(url)
         print('Bark推送完成')
-    else:
+    if SCKEY == '' and Token == '' and Bark_Token == '':
         print('未使用消息推送推送！')
 
 url = 'https://weibo.com/p/aj/general/button?ajwvr=6'
