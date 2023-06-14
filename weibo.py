@@ -5,13 +5,15 @@ import re
 import time
 
 # 这里是你要签到的超话的id，每个超话的不一样，多个的话请用英文逗号隔开，例如‘[AA’,‘BB’].获取方式：进入到超话界面，地址栏中的地址的p/和/super_index之间的这一串
-ids = ['']
+ids = os.environ.get('IDS')
 # 这里是选择Server酱的推送方式，填写Sendkey，不想使用的话直接忽略
-SCKEY = ''
+SCKEY = os.environ.get('SCKEY')
 # 推送PLUS的token
-Token = ''
+Token = os.environ.get('PLUS_TOKEN')
+# 推送BARK的token
+Bark_Token = os.environ.get('BARK_TOKEN')
 # 这里填写你的COOKIE
-cookie = ''
+cookie = os.environ.get('COOKIE')
 # 推送函数
 def push(content):
     if SCKEY != '':
@@ -23,6 +25,10 @@ def push(content):
         json = {"token": Token, 'title': '微博超话签到', 'content': content, "template": "json"}
         resp = requests.post(f'http://www.pushplus.plus/send', json=json, headers=headers).json()
         print('push+推送成功' if resp['code'] == 200 else 'push+推送失败')
+    elif Bark_Token != '':
+        url = "https://api.day.app/{}/{}/{}".format(Bark_Token, '微博超话签到', content)
+        requests.post(url)
+        print('Bark推送完成')
     else:
         print('未使用消息推送推送！')
 
