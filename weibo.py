@@ -52,7 +52,6 @@ for person_id in ids:
     'ua': 'Mozilla/5.0%20(Windows%20NT%2010.0;%20Win64;%20x64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/109.0.0.0%20Safari/537.36',
     'screen': '1536*864',
     '__rnd': '1674614466131'}
-    num += 1
     try:
         # 获取超话社区名字
         html_info =requests.get(url=info_url, headers=header).text
@@ -62,9 +61,9 @@ for person_id in ids:
         response = requests.get(url=url, headers=header, params=data).text
         result = json.loads(response)
         content =content+info+'   '+result['msg']+'\n\n'
-        # num += 1
+        num += 1
         if num ==len(ids):
           push(content)
     except Exception as ex:
-        content = '签到失败，可能是cookie失效,请及时更新cookie'
+        content = person_id + '签到失败，可能是cookie失效,请及时更新cookie'
         push(content + ',出现如下异常%s' % ex)
