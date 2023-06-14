@@ -1,8 +1,4 @@
-import json
-
-import requests
-import re
-import time
+import requests, json, re, os, time
 
 # 这里是你要签到的超话的id，每个超话的不一样，多个的话请用英文逗号隔开，例如‘[AA’,‘BB’].获取方式：进入到超话界面，地址栏中的地址的p/和/super_index之间的这一串
 ids = os.environ.get('IDS')
